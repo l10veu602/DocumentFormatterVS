@@ -1,6 +1,6 @@
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011">
   <Metadata>
-    <Identity Id="DocumentFormatterVS..7064052b-4be7-456b-bf2f-7751758118da" Version="1.0" Language="en-US" Publisher="l10veu" />
+    <Identity Id="DocumentFormatterVS..7064052b-4be7-456b-bf2f-7751758118da" Version="1.01" Language="en-US" Publisher="l10veu" />
     <DisplayName>DocumentFormatterVS</DisplayName>
     <Description xml:space="preserve">Document formatter VSIX Project.</Description>
   </Metadata>
