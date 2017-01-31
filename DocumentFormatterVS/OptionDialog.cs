@@ -15,7 +15,7 @@ namespace DocumentFormatterVS
     {
         class PathRegexesTypeConverter : TypeConverter
         {
-            private const char Delimeter = ':';
+            private const string Delimeter = "::";
 
             public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType)
             {
@@ -35,7 +35,7 @@ namespace DocumentFormatterVS
                     return new string[0];
                 }
 
-                return serialized.Split(Delimeter);
+                return serialized.Split(new string[] { Delimeter }, StringSplitOptions.None);
             }
 
             public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
@@ -57,7 +57,7 @@ namespace DocumentFormatterVS
                     return string.Empty;
                 }
 
-                return string.Join(char.ToString(Delimeter), pathRegexes);
+                return string.Join(Delimeter, pathRegexes);
             }
         }
 
