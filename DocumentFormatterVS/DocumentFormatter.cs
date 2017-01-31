@@ -63,7 +63,7 @@ namespace DocumentFormatterVS
 
         public int OnBeforeSave(uint docCookie)
         {
-            if (package.IsFormattingEnabled)
+            if (!package.IsFormattingDisabled)
             {
                 Document document = FindDocument(docCookie);
                 if (!IsFormattingIgnored(document))

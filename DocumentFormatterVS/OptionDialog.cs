@@ -71,9 +71,9 @@ namespace DocumentFormatterVS
             get; set;
         }
 
-        [DisplayName("Is enabled")]
-        [Description("Whether formatting is enabled")]
-        public bool IsEnabled
+        [DisplayName("Is disabled")]
+        [Description("Whether formatting is disabled")]
+        public bool IsDisabled
         {
             get; set;
         }

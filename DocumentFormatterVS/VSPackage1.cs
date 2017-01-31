@@ -51,18 +51,18 @@ namespace DocumentFormatterVS
         /// </summary>
         public const string PackageGuidString = "1193e712-0ba8-4ef4-ad84-d93a284b6318";
 
-        public bool IsFormattingEnabled
+        public bool IsFormattingDisabled
         {
             get
             {
                 OptionDialog dialog = (OptionDialog)GetDialogPage(typeof(OptionDialog));
-                return dialog.IsEnabled;
+                return dialog.IsDisabled;
             }
 
             set
             {
                 OptionDialog dialog = (OptionDialog)GetDialogPage(typeof(OptionDialog));
-                dialog.IsEnabled = value;
+                dialog.IsDisabled = value;
                 dialog.SaveSettingsToStorage();
             }
         }

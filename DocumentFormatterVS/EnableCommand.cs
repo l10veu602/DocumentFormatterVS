@@ -58,7 +58,7 @@ namespace DocumentFormatterVS
         private void BeforeQueryStatus(object sender, EventArgs e)
         {
             var menuItem = sender as OleMenuCommand;
-            menuItem.Text = package.IsFormattingEnabled ? "Formatting: Turn off" : "Formatting: Turn On";
+            menuItem.Text = package.IsFormattingDisabled ? "Formatting: Turn on" : "Formatting: Turn off";
         }
 
         /// <summary>
@@ -99,7 +99,7 @@ namespace DocumentFormatterVS
         /// <param name="e">Event args.</param>
         private void MenuItemCallback(object sender, EventArgs e)
         {
-            package.IsFormattingEnabled = !package.IsFormattingEnabled;
+            package.IsFormattingDisabled = !package.IsFormattingDisabled;
         }
     }
 }
