@@ -30,6 +30,10 @@ namespace DocumentFormatterVS
                 {
                     return base.ConvertFrom(context, culture, value);
                 }
+                else if (serialized == string.Empty)
+                {
+                    return new string[0];
+                }
 
                 return serialized.Split(Delimeter);
             }
