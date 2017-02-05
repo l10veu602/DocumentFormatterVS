@@ -43,7 +43,7 @@ namespace DocumentFormatterVS
     [ProvideAutoLoad(VSConstants.UICONTEXT.SolutionExists_string)]
     [ProvideMenuResource("Menus.ctmenu", 1)]
     [ProvideOptionPage(typeof(OptionDialog),
-    "Format Document On Save", "General", 0, 0, true)]
+    "DocumentFormatterVS", "General", 0, 0, true)]
     public sealed class VSPackage1 : Package
     {
         /// <summary>
