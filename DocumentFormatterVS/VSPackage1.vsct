@@ -76,6 +76,7 @@
   <KeyBindings>
     <KeyBinding guid="guidVSPackage1CmdSet" id="EnableCommandId"
     editor="guidVSStd97"
+    key1="T" mod1="Alt">
     </KeyBinding>
   </KeyBindings>
 
