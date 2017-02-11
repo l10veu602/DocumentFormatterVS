@@ -57,7 +57,7 @@
         <Icon guid="guidImages" id="bmpPic1" />
         <CommandFlag>TextChanges</CommandFlag>
         <Strings>
-          <ButtonText>Invoke EnableCommand</ButtonText>
+          <ButtonText>Toggle Formatting</ButtonText>
         </Strings>
       </Button>
     </Buttons>
@@ -72,6 +72,12 @@
       <Bitmap guid="guidImages" href="Resources\EnableCommand.png" usedList="bmpPic1, bmpPic2, bmpPicSearch, bmpPicX, bmpPicArrows, bmpPicStrikethrough"/>
     </Bitmaps>
   </Commands>
+
+  <KeyBindings>
+    <KeyBinding guid="guidVSPackage1CmdSet" id="EnableCommandId"
+    editor="guidVSStd97"
+    </KeyBinding>
+  </KeyBindings>
 
   <Symbols>
     <!-- This is the package guid. -->
