@@ -55,15 +55,13 @@ namespace DocumentFormatterVS
         {
             get
             {
-                OptionDialog dialog = (OptionDialog)GetDialogPage(typeof(OptionDialog));
-                return dialog.IsDisabled;
+                return OptionDialog.IsDisabled;
             }
 
             set
             {
-                OptionDialog dialog = (OptionDialog)GetDialogPage(typeof(OptionDialog));
-                dialog.IsDisabled = value;
-                dialog.SaveSettingsToStorage();
+                OptionDialog.IsDisabled = value;
+                OptionDialog.SaveSettingsToStorage();
             }
         }
 
@@ -71,8 +69,23 @@ namespace DocumentFormatterVS
         {
             get
             {
-                OptionDialog dialog = (OptionDialog)GetDialogPage(typeof(OptionDialog));
-                return dialog.IgnorePathRegexes;
+                return OptionDialog.IgnorePathRegexes;
+            }
+        }
+
+        public bool IsUE4UPropertyFormattingEnabled
+        {
+            get
+            {
+                return OptionDialog.IsUE4UPropertyFormattingEnabled;
+            }
+        }
+
+        private OptionDialog OptionDialog
+        {
+            get
+            {
+                return (OptionDialog)GetDialogPage(typeof(OptionDialog));
             }
         }
 

@@ -63,16 +63,27 @@ namespace DocumentFormatterVS
 
         public int OnBeforeSave(uint docCookie)
         {
-            if (!package.IsFormattingDisabled)
+            int result = VSConstants.S_OK;
+            if (package.IsFormattingDisabled)
             {
-                Document document = FindDocument(docCookie);
-                if (!IsFormattingIgnored(document))
-                {
-                    FormatDocument(document);
-                }
+                return result;
             }
 
-            return VSConstants.S_OK;
+            Document document = FindDocument(docCookie);
+            if (IsFormattingIgnored(document))
+            {
+                return result;
+            }
+
+            FormatDocument(document);
+
+            if (package.IsUE4UPropertyFormattingEnabled && document.Name.ToLower().EndsWith(".h"))
+            {
+                var textDocument = document.Object("TextDocument") as TextDocument;
+                FormatUProperty(textDocument);
+            }
+
+            return result;
         }
 
         private bool IsFormattingIgnored(Document document)
@@ -117,6 +128,39 @@ namespace DocumentFormatterVS
             }
 
             currentDoc.Activate();
+        }
+
+        private void FormatUProperty(TextDocument textDocument)
+        {
+            if (textDocument == null)
+            {
+                return;
+            }
+
+            var editPoint = textDocument.CreateEditPoint();
+            while (!editPoint.AtEndOfDocument)
+            {
+                string line = editPoint.GetText(editPoint.LineLength);
+                editPoint.LineDown();
+
+                if (editPoint.AtEndOfDocument)
+                {
+                    break;
+                }
+
+                var match = Regex.Match(line, @"^(\s*)((UPROPERTY)|(UFUNCTION))\(");
+                if (!match.Success)
+                {
+                    continue;
+                }
+
+                string upropertyIndent = match.Groups[1].Value;
+                var upropertyMemberText = editPoint.GetText(editPoint.LineLength);
+                upropertyMemberText = upropertyIndent + upropertyMemberText.TrimStart(null);
+
+                editPoint.ReplaceText(editPoint.LineLength, upropertyMemberText, 0);
+                editPoint.LineDown();
+            }
         }
     }
 }

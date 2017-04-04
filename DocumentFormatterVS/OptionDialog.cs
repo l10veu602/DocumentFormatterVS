@@ -78,6 +78,13 @@ namespace DocumentFormatterVS
             get; set;
         }
 
+        [DisplayName("Use UE4 UPROPERTY formatting")]
+        [Description("Align UPROPERTY, UFUNCTION members")]
+        public bool IsUE4UPropertyFormattingEnabled
+        {
+            get; set;
+        }
+
         private string CollectionPath { get { return SharedSettingsStorePath.Replace('.', '\\'); } }
 
         protected override void LoadSettingFromStorage(PropertyDescriptor prop)
