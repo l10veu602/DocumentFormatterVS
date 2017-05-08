@@ -1,6 +1,7 @@
-﻿# DocumentFormatterVS
-Document formatter. VSIX Project.
-Supports Visual Studio 2015.
+# DocumentFormatterVS
+- Document formatter
+- VSIX Project
+- Supports Visual Studio 2015
 
 # Features
 - 저장할 때 Formatting
