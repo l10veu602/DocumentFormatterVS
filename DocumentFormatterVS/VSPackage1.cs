@@ -51,16 +51,16 @@ namespace DocumentFormatterVS
         /// </summary>
         public const string PackageGuidString = "1193e712-0ba8-4ef4-ad84-d93a284b6318";
 
-        public bool IsFormattingDisabled
+        public bool IsFormattingOnSaveDisabled
         {
             get
             {
-                return OptionDialog.IsDisabled;
+                return OptionDialog.IsFormattingOnSaveDisabled;
             }
 
             set
             {
-                OptionDialog.IsDisabled = value;
+                OptionDialog.IsFormattingOnSaveDisabled = value;
                 OptionDialog.SaveSettingsToStorage();
             }
         }
@@ -118,6 +118,7 @@ namespace DocumentFormatterVS
             documentFormatter = new DocumentFormatter(DTE, runningDocumentTable, this);
 
             EnableCommand.Initialize(this);
+            FormatProjectCommand.Initialize(this, DTE, documentFormatter);
         }
 
         #endregion

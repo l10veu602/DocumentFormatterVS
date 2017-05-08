@@ -61,6 +61,7 @@
   <ItemGroup>
     <Compile Include="DocumentFormatter.cs" />
     <Compile Include="EnableCommand.cs" />
+    <Compile Include="FormatProjectCommand.cs" />
     <Compile Include="OptionDialog.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -182,6 +183,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\EnableCommand.png" />
+    <Content Include="Resources\FormatProjectCommand.png" />
     <Content Include="Resources\VSPackage1.ico" />
     <VSCTCompile Include="VSPackage1.vsct">
       <ResourceName>Menus.ctmenu</ResourceName>

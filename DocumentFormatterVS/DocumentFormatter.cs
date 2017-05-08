@@ -26,6 +26,36 @@ namespace DocumentFormatterVS
             runningDocumentTable.Advise(this);
         }
 
+        public void FormatDocument(Document document)
+        {
+            if (document == null)
+            {
+                return;
+            }
+
+            if (IsFormattingIgnored(document))
+            {
+                return;
+            }
+
+            var currentDoc = DTE.ActiveDocument;
+
+            document.Activate();
+
+            if (DTE.ActiveWindow.Kind == "Document")
+            {
+                DTE.ExecuteCommand("Edit.FormatDocument");
+            }
+
+            currentDoc?.Activate();
+
+            if (package.IsUE4UPropertyFormattingEnabled && document.Name.ToLower().EndsWith(".h"))
+            {
+                var textDocument = document.Object("TextDocument") as TextDocument;
+                FormatUProperty(textDocument);
+            }
+        }
+
         public int OnAfterAttributeChange(uint docCookie, uint grfAttribs)
         {
             return VSConstants.S_OK;
@@ -64,24 +94,13 @@ namespace DocumentFormatterVS
         public int OnBeforeSave(uint docCookie)
         {
             int result = VSConstants.S_OK;
-            if (package.IsFormattingDisabled)
+            if (package.IsFormattingOnSaveDisabled)
             {
                 return result;
             }
 
             Document document = FindDocument(docCookie);
-            if (IsFormattingIgnored(document))
-            {
-                return result;
-            }
-
             FormatDocument(document);
-
-            if (package.IsUE4UPropertyFormattingEnabled && document.Name.ToLower().EndsWith(".h"))
-            {
-                var textDocument = document.Object("TextDocument") as TextDocument;
-                FormatUProperty(textDocument);
-            }
 
             return result;
         }
@@ -114,20 +133,6 @@ namespace DocumentFormatterVS
             var documentPath = documentInfo.Moniker;
 
             return DTE.Documents.Cast<Document>().FirstOrDefault(doc => doc.FullName == documentPath);
-        }
-
-        private void FormatDocument(Document document)
-        {
-            var currentDoc = DTE.ActiveDocument;
-
-            document.Activate();
-
-            if (DTE.ActiveWindow.Kind == "Document")
-            {
-                DTE.ExecuteCommand("Edit.FormatDocument");
-            }
-
-            currentDoc.Activate();
         }
 
         private void FormatUProperty(TextDocument textDocument)

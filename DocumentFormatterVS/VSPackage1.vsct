@@ -15,10 +15,10 @@
         defining some of the constants that we will use inside the file. -->
 
   <!--This is the file that defines the IDs for all the commands exposed by VisualStudio. -->
-  <Extern href="stdidcmd.h"/>
+  <Extern href="stdidcmd.h" />
 
   <!--This header contains the command ids for the menus provided by the shell. -->
-  <Extern href="vsshlids.h"/>
+  <Extern href="vsshlids.h" />
 
   <!--The Commands section is where commands, menus, and menu groups are defined.
       This section uses a Guid to identify the package that provides the command defined inside it. -->
@@ -37,7 +37,10 @@
          must be a menu. -->
     <Groups>
       <Group guid="guidVSPackage1CmdSet" id="MyMenuGroup" priority="0x0600">
-        <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_CODEWIN"/>
+        <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_CODEWIN" />
+      </Group>
+      <Group guid="guidVSPackage1CmdSet" id="ProjectMenuGroup" priority="0x0600">
+        <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_PROJNODE" />
       </Group>
     </Groups>
 
@@ -60,6 +63,13 @@
           <ButtonText>Toggle Formatting</ButtonText>
         </Strings>
       </Button>
+      <Button guid="guidVSPackage1CmdSet" id="FormatProjectCommandId" priority="0x0100" type="Button">
+        <Parent guid="guidVSPackage1CmdSet" id="ProjectMenuGroup" />
+        <Icon guid="guidImages" id="bmpPic1" />
+        <Strings>
+          <ButtonText>Format project</ButtonText>
+        </Strings>
+      </Button>
     </Buttons>
 
     <!--The bitmaps section is used to define the bitmaps that are used for the commands.-->
@@ -69,14 +79,13 @@
             bitmap strip containing the bitmaps and then there are the numeric ids of the elements used
             inside a button definition. An important aspect of this declaration is that the element id
             must be the actual index (1-based) of the bitmap inside the bitmap strip. -->
-      <Bitmap guid="guidImages" href="Resources\EnableCommand.png" usedList="bmpPic1, bmpPic2, bmpPicSearch, bmpPicX, bmpPicArrows, bmpPicStrikethrough"/>
+      <Bitmap guid="guidImages" href="Resources\EnableCommand.png" usedList="bmpPic1, bmpPic2, bmpPicSearch, bmpPicX, bmpPicArrows, bmpPicStrikethrough" />
+      <Bitmap guid="guidImages1" href="Resources\FormatProjectCommand.png" usedList="bmpPic1, bmpPic2, bmpPicSearch, bmpPicX, bmpPicArrows, bmpPicStrikethrough" />
     </Bitmaps>
   </Commands>
 
   <KeyBindings>
-    <KeyBinding guid="guidVSPackage1CmdSet" id="EnableCommandId"
-    editor="guidVSStd97"
-    key1="T" mod1="Alt">
+    <KeyBinding guid="guidVSPackage1CmdSet" id="EnableCommandId" editor="guidVSStd97" key1="T" mod1="Alt">
     </KeyBinding>
   </KeyBindings>
 
@@ -87,10 +96,21 @@
     <!-- This is the guid used to group the menu commands together -->
     <GuidSymbol name="guidVSPackage1CmdSet" value="{48465474-d64b-4daa-9b7c-c60e0b7e3290}">
       <IDSymbol name="MyMenuGroup" value="0x1020" />
+      <IDSymbol name="ProjectMenuGroup" value="0x1021" />
       <IDSymbol name="EnableCommandId" value="0x0100" />
+      <IDSymbol name="FormatProjectCommandId" value="0x0101" />
     </GuidSymbol>
 
-    <GuidSymbol name="guidImages" value="{cd435147-7cc7-4bba-8c4d-e694784ae5e9}" >
+    <GuidSymbol name="guidImages" value="{cd435147-7cc7-4bba-8c4d-e694784ae5e9}">
+      <IDSymbol name="bmpPic1" value="1" />
+      <IDSymbol name="bmpPic2" value="2" />
+      <IDSymbol name="bmpPicSearch" value="3" />
+      <IDSymbol name="bmpPicX" value="4" />
+      <IDSymbol name="bmpPicArrows" value="5" />
+      <IDSymbol name="bmpPicStrikethrough" value="6" />
+    </GuidSymbol>
+  
+    <GuidSymbol value="{6d731a70-9791-427f-b017-25d01046161f}" name="guidImages1">
       <IDSymbol name="bmpPic1" value="1" />
       <IDSymbol name="bmpPic2" value="2" />
       <IDSymbol name="bmpPicSearch" value="3" />
